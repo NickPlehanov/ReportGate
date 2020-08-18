@@ -50,7 +50,7 @@ namespace ReportGate.Models {
                 using (AndromedaContext andromedaContext = new AndromedaContext()) {
                     Guid guid = Guid.Parse(value);
                     List<Andromeda> andromedas = andromedaContext.Andromeda.Where(x => x.New_andromedaId == guid).ToList<Andromeda>();
-                    _new_andromeda_alarm = "№ " + andromedas[0].New_number.ToString() + "(" + andromedas[0].New_name + ") " + andromedas[0].New_address;
+                    _new_andromeda_alarm = "№ " + andromedas[0].New_number.ToString() + "(" + andromedas[0].New_name.Replace('\"','\'') + ") " + andromedas[0].New_address;
                 }
             }
         }

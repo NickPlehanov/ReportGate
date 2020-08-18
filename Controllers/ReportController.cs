@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 
 namespace ReportGate.Controllers {
@@ -54,7 +53,7 @@ namespace ReportGate.Controllers {
                 }
             }
             else
-                return JsonConvert.SerializeObject("Не верно заданы параметры");
+                return JsonConvert.SerializeObject("Введенное значение не является датой");
         }
     }
 }
