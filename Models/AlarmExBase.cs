@@ -26,6 +26,12 @@ namespace ReportGate.Models {
         public DateTime? new_alarm_dt { get; set; }
         public string new_zone { get; set; }
         public bool? new_ps { get; set; }
+        [NotMapped]
+        public string new_number { get; set; }
+        [NotMapped]
+        public string new_objname { get; set; }
+        [NotMapped]
+        public string new_address { get; set; }
     }
     public class AlarmExBaseContext : DbContext {
         public AlarmExBaseContext() : base("VityazMSCRMEntity") { }

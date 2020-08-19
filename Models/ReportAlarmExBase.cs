@@ -43,17 +43,48 @@ namespace ReportGate.Models {
                     _new_departure = DateTime.Parse(value.Value.ToString()).AddHours(5);
             }
         }
-        private string _new_andromeda_alarm { get; set; }
-        public string new_andromeda_alarm {
+
+        private Guid? _new_andromeda_alarm { get; set; }
+        public Guid? new_andromeda_alarm {
             get => _new_andromeda_alarm;
             set {
+                _new_andromeda_alarm = value;
+            }
+        }
+
+        private string _new_number { get; set; }
+        public string new_number {
+            get => _new_number;
+            set {
                 using (AndromedaContext andromedaContext = new AndromedaContext()) {
-                    Guid guid = Guid.Parse(value);
-                    List<Andromeda> andromedas = andromedaContext.Andromeda.Where(x => x.New_andromedaId == guid).ToList<Andromeda>();
-                    _new_andromeda_alarm = "№ " + andromedas[0].New_number.ToString() + "(" + andromedas[0].New_name.Replace('\"','\'') + ") " + andromedas[0].New_address;
+                    Guid guid = Guid.Parse(new_andromeda_alarm.ToString());
+                    _new_number = andromedaContext.Andromeda.FirstOrDefault(x => x.New_andromedaId == guid).New_number.ToString().Replace('\"', '\'');
                 }
             }
         }
+
+        private string _new_objname { get; set; }
+        public string new_objname {
+            get => _new_objname;
+            set {
+                using (AndromedaContext andromedaContext = new AndromedaContext()) {
+                    Guid guid = Guid.Parse(new_andromeda_alarm.ToString());
+                    _new_objname = andromedaContext.Andromeda.FirstOrDefault(x => x.New_andromedaId == guid).New_name.Replace('\"', '\'');
+                }
+            }
+        }
+
+        private string _new_address { get; set; }
+        public string new_address {
+            get => _new_address;
+            set {
+                using (AndromedaContext andromedaContext = new AndromedaContext()) {
+                    Guid guid = Guid.Parse(new_andromeda_alarm.ToString());
+                    _new_address = andromedaContext.Andromeda.FirstOrDefault(x => x.New_andromedaId == guid).New_address.Replace('\"', '\'');
+                }
+            }
+        }
+
         public bool? new_owner { get; set; }
         public bool? new_police { get; set; }
         public bool? new_order { get; set; }
