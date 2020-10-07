@@ -101,5 +101,7 @@ namespace ReportGate.Models {
 
         public string new_zone { get; set; }
         public bool? new_ps { get; set; }
+        public string delta { get; set; }
+        public string reason { get; set; }
     }
 }
